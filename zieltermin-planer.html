@@ -19,6 +19,9 @@
         .container {
             width: 90%;
             max-width: 800px;
+            min-height: 100vh; /* Mindesthöhe des Viewports */
+            display: flex;
+            flex-direction: column;
         }
 
         .page-title {
@@ -293,6 +296,44 @@
         .visible {
             opacity: 1;
         }
+    
+        .footer-container {
+            margin-top: auto; /* Pusht Footer nach unten */
+            padding: 20px 0;
+            border-top: 1px solid #ecf0f1;
+            text-align: center;
+        }
+        
+        .version-info {
+            font-size: 0.85em;
+            color: #7f8c8d;
+            display: inline-flex;
+            gap: 15px;
+            align-items: center;
+        }
+        
+        .github-link {
+            color: #7f8c8d;
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        
+        .github-link:hover {
+            color: #3498db;
+            text-decoration: underline;
+        }
+        
+        /* Mobile Anpassung */
+        @media (max-width: 600px) {
+          .footer-container {
+            padding: 15px 10px;
+          }
+          
+          .version-info {
+            flex-direction: column;
+            gap: 5px;
+          }
+        }    
     </style>
 </head>
 <body>
@@ -908,5 +949,11 @@
             setInterval(updateCountdown, 1000);
         });
     </script>
+    <div class="footer-container">
+        <div class="version-info">
+            <span>v1.0.0</span>
+            <a href="https://github.com/ultrahochfreq/zieltermin-planer" target="_blank" class="github-link">GitHub Repository</a>
+        </div>
+    </div>
 </body>
 </html>
