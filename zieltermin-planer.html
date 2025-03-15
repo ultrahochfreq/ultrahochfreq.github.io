@@ -6,6 +6,11 @@
     <!-- LZString für Komprimierung -->
     <script src="https://cdn.jsdelivr.net/npm/lz-string@1.4.4/libs/lz-string.min.js"></script>
     <style>
+        html {
+          height: -webkit-fill-available;
+          height: fill-available;
+        }
+
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             background-color: #f0f0f0;
@@ -14,14 +19,15 @@
             flex-direction: column;
             align-items: center;
             transition: padding-top 0.3s ease;
+            min-height: 100vh;
+            min-height: -webkit-fill-available;
         }
 
         .container {
             width: 90%;
             max-width: 800px;
-            min-height: 100vh; /* Mindesthöhe des Viewports */
-            display: flex;
-            flex-direction: column;
+            position: relative;
+            padding-bottom: 60px; /* Footer-Höhe + Abstand */
         }
 
         .page-title {
@@ -298,14 +304,18 @@
         }
     
         .footer-container {
-            margin-top: auto; /* Pusht Footer nach unten */
-            padding: 20px 0;
-            border-top: 1px solid #ecf0f1;
-            text-align: center;
+          position: fixed;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          border-top: 1px solid #ecf0f1;
+          padding: 15px 20px;
+          z-index: 1000;
+          width: 150px;
         }
         
         .version-info {
-            font-size: 0.85em;
+            font-size: 0.7em;
             color: #7f8c8d;
             display: inline-flex;
             gap: 15px;
@@ -323,17 +333,17 @@
             text-decoration: underline;
         }
         
-        /* Mobile Anpassung */
-        @media (max-width: 600px) {
-          .footer-container {
-            padding: 15px 10px;
+        /* Mobile-Spezifische Anpassungen */
+        @media (max-width: 768px) {
+          .container {
+            min-height: 100dvh;
           }
           
-          .version-info {
-            flex-direction: column;
-            gap: 5px;
+          .footer-container {
+            padding: 12px 15px;
+            position: static !important;
           }
-        }    
+        }
     </style>
 </head>
 <body>
@@ -392,6 +402,12 @@
         </div>
 
         <div class="calendar-container" id="calendar-container"></div>
+<div class="footer-container">
+<div class="version-info">
+<span>v1.0.0</span>
+<a href="https://github.com/ultrahochfreq/zieltermin-planer" target="_blank" class="github-link">GitHub Repository</a>
+</div>
+</div>
     </div>
 
     <script>
@@ -949,11 +965,5 @@
             setInterval(updateCountdown, 1000);
         });
     </script>
-    <div class="footer-container">
-        <div class="version-info">
-            <span>v1.0.0</span>
-            <a href="https://github.com/ultrahochfreq/zieltermin-planer" target="_blank" class="github-link">GitHub Repository</a>
-        </div>
-    </div>
 </body>
 </html>
